@@ -122,11 +122,3 @@ switch (opts.action) {
   default:
     break;
 }
-
-/*
-add -> ✅
-list -> ✅
-summary -> ✅
-delete -> ✅
-summary --month 8 -> 
-*/
