@@ -124,18 +124,20 @@ switch (opts.action) {
 
   case "update":
     if (!opts.id) {
-      console.error("Proporciona un ID");
+      console.error("Please provide an ID");
       break;
     }
     const existExpense = expenses.find((exp) => exp.id === opts.id);
 
     if (!existExpense) {
-      console.log("No existen registros con ese ID");
+      console.log("No expense found with that ID");
       break;
     }
 
     if (!opts.description && !opts.amount) {
-      console.error("Por favor proporciona los datos necesarios");
+      console.error(
+        "Please provide the necessary data (description or amount)"
+      );
       break;
     }
 
