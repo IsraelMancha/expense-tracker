@@ -20,7 +20,7 @@ It is a simple **command-line application** built with **Node.js** to manage per
 
 ```bash
 git clone https://github.com/IsraelMancha/expense-tracker.git
-cd expense-tracker-cli
+cd expense-tracker
 npm install
 ```
 
@@ -29,18 +29,18 @@ npm install
 ## Usage
 
 ```bash
-node cli.js --action <action> [options]
+node app.js --action <action> [options]
 ```
 
 Examples:
 
 ```bash
-node cli.js --action add --description "Lunch" --amount 15
-node cli.js --action list
-node cli.js --action update --id 1 --amount 25
-node cli.js --action delete --id 1
-node cli.js --action summary
-node cli.js --action summary --month 8
+node app.js --action add --description "Lunch" --amount 15
+node app.js --action list
+node app.js --action update --id 1 --amount 25
+node app.js --action delete --id 1
+node app.js --action summary
+node app.js --action summary --month 8
 ```
 
 ---
