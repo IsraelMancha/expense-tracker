@@ -9,7 +9,10 @@ if (!fs.existsSync(dbPath)) {
 }
 
 program
-  .option("-a, --action <string>", "Action: add | list | delete | summary")
+  .option(
+    "-a, --action <string>",
+    "Action: add | list | delete | summary | update"
+  )
   .option("-d, --description <string>", "Expense description")
   .option("--amount <number>", "Expense amount", parseFloat)
   .option("-i, --id <number>", "Expense ID", parseInt)
@@ -117,6 +120,42 @@ switch (opts.action) {
     const updatedExpenses = expenses.filter((e) => e.id !== opts.id);
     writeExpenses(updatedExpenses);
     console.log("Expense deleted successfully");
+    break;
+
+  case "update":
+    if (!opts.id) {
+      console.error("Proporciona un ID");
+      break;
+    }
+    const existExpense = expenses.find((exp) => exp.id === opts.id);
+
+    if (!existExpense) {
+      console.log("No existen registros con ese ID");
+      break;
+    }
+
+    if (!opts.description && !opts.amount) {
+      console.error("Por favor proporciona los datos necesarios");
+      break;
+    }
+
+    const newExpenseUpdate = {
+      id: existExpense.id,
+      description: opts.description
+        ? opts.description
+        : existExpense.description,
+      amount: opts.amount ? opts.amount : existExpense.amount,
+      date: new Date(),
+    };
+
+    // const updatedExpense =
+
+    const indexToUpdate = expenses.findIndex((exp) => exp.id === opts.id);
+
+    expenses[indexToUpdate] = newExpenseUpdate;
+    writeExpenses(expenses);
+    console.log("Successfully updated!");
+
     break;
 
   default:
